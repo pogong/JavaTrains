@@ -1,12 +1,12 @@
-package com.pogong.MyChat;
+package com.pogong.MyChat.pojo;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-public class TvCharacterDto {
+public class TvCharacter {
     private Integer id;
     private int tvSeriesId;
-    @NotNull private String name;
+    private String name;
 
     public Integer getId() {
         return id;
