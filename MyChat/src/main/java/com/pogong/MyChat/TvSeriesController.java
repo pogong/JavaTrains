@@ -30,7 +30,7 @@ public class TvSeriesController {
     @GetMapping
     public List<TvSeriesDto> getAll() {
         if (log.isTraceEnabled()) {
-            log.trace("getAll()被调用了");
+            log.trace("zc see getAll()被调用了");
         }
 
         List<TvSeriesDto> list = new ArrayList();
