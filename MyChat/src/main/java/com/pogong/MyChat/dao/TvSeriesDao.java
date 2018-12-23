@@ -7,21 +7,16 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.pogong.MyChat.pojo.TvSeries;
+import org.apache.ibatis.annotations.Param;
 
 public interface TvSeriesDao {
-
-    @Select("select * from tv_series where id=#{id}")
-    public TvSeries getOneById(int id);
-
-    @Select("select * from tv_series where status=0")
     public List<TvSeries> getAll();
 
-    public int update(TvSeries tvSeries);
-    public int insert(TvSeries tvSeries);
+    public TvSeries getOneById(int id);
 
-    @Delete("delete from tv_series where id=#{id}")
-    public int delete(int id);
+    public void insert(TvSeries tvSeries);
 
-    @Update("update tv_series set status=-1, reason=#{reason} where id=#{id}")
-    public int logicDelete(int id, String reason);
+    public void delete(int id);
+
+    public void logicDelete(@Param("id")int id, @Param("reason")String reason);
 }

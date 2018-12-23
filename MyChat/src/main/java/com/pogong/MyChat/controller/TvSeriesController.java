@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.validation.Valid;
 
+import com.pogong.MyChat.dao.TvSeriesDao;
 import com.pogong.MyChat.pojo.TvSeries;
 import com.pogong.MyChat.service.TvSeriesService;
 
@@ -43,4 +44,38 @@ public class TvSeriesController {
         return tvSeriesService.getAllTvSeries();
     }
 
+    @GetMapping("/{id}")
+    public TvSeries getOne(@PathVariable int id) {
+        if (log.isTraceEnabled()) {
+            log.trace("zc see getOne");
+        }
+        return tvSeriesService.getOneById(id);
+    }
+
+    @PostMapping
+    public int insertTvSeries(@RequestBody TvSeries tvSeries) {
+        if (log.isTraceEnabled()) {
+            log.trace("zc see insertTvSeries");
+        }
+        tvSeriesService.insert(tvSeries);
+        return 1;
+    }
+
+    @GetMapping("/delete/{id}")
+    public int delete(@PathVariable int id) {
+        if (log.isTraceEnabled()) {
+            log.trace("zc see delete"+ "^" + id);
+        }
+        tvSeriesService.delete(id);
+        return 1;
+    }
+
+    @GetMapping("/logicDelete/{id}")
+    public int logicDelete(@PathVariable int id,@RequestParam("reason") String reason) {
+        if (log.isTraceEnabled()) {
+            log.trace("zc see logicDelete" + "^" + id + "^" + reason);
+        }
+        tvSeriesService.logicDelete(id,reason);
+        return 1;
+    }
 }

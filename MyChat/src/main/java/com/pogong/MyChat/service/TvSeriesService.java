@@ -13,7 +13,6 @@ import com.pogong.MyChat.dao.TvCharacterDao;
 import com.pogong.MyChat.dao.TvSeriesDao;
 import com.pogong.MyChat.pojo.TvCharacter;
 import com.pogong.MyChat.pojo.TvSeries;
-
 @Service
 public class TvSeriesService {
     private final Log log = LogFactory.getLog(TvSeriesService.class);
@@ -25,16 +24,25 @@ public class TvSeriesService {
 
     @Transactional(readOnly = true)
     public List<TvSeries> getAllTvSeries() {
-        try {
-            Thread.sleep(10);
-        } catch (Exception e) {
-
-        }
         if (log.isTraceEnabled()) {
-            log.trace("getAllTvSeries started   ");
+            log.trace("getAllTvSeries started");
         }
         List<TvSeries> list = seriesDao.getAll();
 
         return list;
+    }
+
+    public TvSeries getOneById(int id) {
+        return seriesDao.getOneById(id);
+    }
+
+    public void insert(TvSeries tvSeries) { seriesDao.insert(tvSeries); }
+
+    public void delete(int id){
+        seriesDao.delete(id);
+    }
+
+    public void logicDelete(int id, String reason){
+        seriesDao.logicDelete(id,reason);
     }
 }
