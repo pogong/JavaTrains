@@ -2,8 +2,9 @@ package com.pogong.MyChat.pojo;
 
 import java.util.Date;
 import java.util.List;
+import java.io.Serializable;
 
-public class TvSeries {
+public class TvSeries implements Serializable{
     private Integer id;
     private String name;
     private int seasonCount;

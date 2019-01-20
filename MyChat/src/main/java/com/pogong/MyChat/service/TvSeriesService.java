@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,6 +15,7 @@ import com.pogong.MyChat.dao.TvCharacterDao;
 import com.pogong.MyChat.dao.TvSeriesDao;
 import com.pogong.MyChat.pojo.TvCharacter;
 import com.pogong.MyChat.pojo.TvSeries;
+
 
 @Service
 public class TvSeriesService {
@@ -33,7 +35,11 @@ public class TvSeriesService {
         return list;
     }
 
+    @Cacheable(cacheNames="TvSeries",key="#id")
     public TvSeries getOneById(int id) {
+        if (log.isTraceEnabled()) {
+            log.trace("getOneById started");
+        }
         return seriesDao.getOneById(id);
     }
 
